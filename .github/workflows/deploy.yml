@@ -39,8 +39,8 @@ jobs:
           username: ${{ secrets.VPS_USERNAME }}
           password: ${{ secrets.VPS_PASSWORD }}
           port: 22
-        script: |
-          docker pull andrehammel/app-name:latest
-          docker stop app || true
-          docker rm app || true
-          docker run -d --name app -p 80:80 -p 443:443 andrehammel/app-name:latest
+          script: |
+            docker pull andrehammel/app-name:latest
+            docker stop app || true
+            docker rm app || true
+            docker run -d --name app -p 80:80 -p 443:443 andrehammel/app-name:latest
