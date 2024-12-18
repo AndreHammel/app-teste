@@ -6,7 +6,7 @@ export function Dashboard() {
       <Helmet title="Dashboard" />
       <div className="flex justify-center items-center h-screen">
         <div>
-          <h1>Dashboard</h1>
+          <h1>Dashboard--</h1>
         </div>
       </div>
     </>
