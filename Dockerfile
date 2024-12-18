@@ -20,17 +20,13 @@ COPY . .
 RUN pnpm run build
 
 # Production stage
-FROM nginx:alpine
+FROM caddy:2-alpine
 
-# Remove default nginx configuration
-RUN rm /etc/nginx/conf.d/default.conf
+# Copy the built assets to Caddy's serving directory
+COPY --from=builder /app/dist /usr/share/caddy
 
-# Copy custom nginx configuration
-COPY nginx.conf /etc/nginx/conf.d/default.conf
-
-# Copy build files from builder stage
-COPY --from=builder /app/dist /usr/share/nginx/html
+# Add your Caddyfile
+COPY Caddyfile /etc/caddy/Caddyfile
 
 EXPOSE 80
-
-CMD ["nginx", "-g", "daemon off;"]
+EXPOSE 443
